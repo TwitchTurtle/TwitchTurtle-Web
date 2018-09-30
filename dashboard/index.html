@@ -1,0 +1,197 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/sorttable.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css"></link>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#c4c4c4">
+<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<title>TwitchTurtle dashboard</title>
+</head>
+<body onload="modal.style.display='block'">
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      User name:<br>
+      <input type="text" name="username" id="username"><br>
+      User password:<br>
+      <input type="password" name="pwd" id="pwd">
+
+      <button onclick="submit()">
+        Login
+      </button>
+
+      <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+
+  </div>
+
+<div class="title center-text">
+    <h1>TwitchTurtle</h1>
+</div>
+<div class="table-container">
+  <div class="checkbox-modal">
+  <hr>
+  <div id="wallet_status"  class="">
+    <span class="caret-icon"></span>&nbsp;status<span>
+  </div>
+  <strong>Block:&nbsp;</strong><span id="blockCount"></span>/<span id="knownBlockCount"></span>
+  <h2>Wallet Info</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td id="name">Username</td>
+      </tr>
+      <tr>
+        <th>Available</th>
+        <td><span id="available_balance"></span> TRTL</td>
+      </tr>
+      <tr>
+        <th>Locked / Unconfirmed</th>
+        <td><span id="locked_amount"></span> TRTL</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>
+          <p id="address"></p>
+          <button onclick="copyToClipboard('#address')" title="copy address">
+            <i class="fa fa-copy"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container tx">
+  <h1>Latest Transactions</h1>
+  <div class="tx">
+    <table class="table table-hover sortable">
+            <thead>
+              <tr>
+                <th id="time" class="">Time</th>
+                <th class="">Name</th>
+                <th class="">Message</th>
+                <th class="sorttable_numeric">Amount</th>
+                <th class="">USD</th>
+              </tr>
+            </thead>
+            <tbody id="rows">
+            </tbody>
+          <tfoot></tfoot></table>
+  </div>
+</div>
+<script>
+var modal = document.getElementById('myModal');
+
+var profile;
+function submit() {
+  modal.style.display = "none";
+  profile = {
+    "username": document.getElementById('username').value,
+    "pwd": document.getElementById('pwd').value
+  };
+
+  $.each(transactionsJSON(), function(index, value){
+    if (value.transactions !== undefined && value.transactions.length != 0) {
+      $.each(value.transactions, function(index2, value2){
+        $('#rows').append(
+          '<tr>' +
+            '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
+            '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
+            '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
+            '<td>'+(value2.amount/100).toFixed(2)+'</td>' +
+          '</tr>'
+        );
+      });
+    }
+  });
+  sorttable.innerSortFunction.apply(document.getElementById('time'), [])
+  sorttable.innerSortFunction.apply(document.getElementById('time'), [])
+}
+
+
+
+function hex2a(hexx) {
+    var hex = hexx.toString();//force conversion
+    var str = '';
+    for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
+}
+
+function copyToClipboard(element) {
+ var $temp = $("<input>");
+ $("body").append($temp);
+ $temp.val($(element).html()).select();
+ document.execCommand("copy");
+ $temp.remove();
+}
+
+function convertExtraToName(extra) {
+  try {
+    var x = JSON.parse(hex2a(extra));
+    return x.name
+  }
+  catch(err) {
+    return "Anonymous";
+  }
+}
+function convertExtraToMessage(extra) {
+  try {
+    var x = JSON.parse(hex2a(extra));
+    return x.message
+  }
+  catch(err) {
+    return "None";
+  }
+}
+
+function transactionsJSON() {
+    var resp ;
+    var xmlHttp ;
+
+    resp  = '' ;
+    xmlHttp = new XMLHttpRequest();
+
+    if(xmlHttp != null)
+    {
+        xmlHttp.open( "GET", "https://api.twitchturtle.com/userStats", false );
+        xmlHttp.setRequestHeader('Content-Type', 'application/json');
+        xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(profile.username + ":" + profile.pwd));
+        xmlHttp.send( null );
+        resp = xmlHttp.responseText;
+    }
+    if(xmlHttp.status == 401) {
+      swal("Error!", 'Incorrect Username/Password', "error").then(() => {
+        modal.style.display='block'
+      });
+
+    }
+    json = JSON.parse(resp);
+    document.getElementById("name").innerHTML = json.name;
+    document.getElementById("address").innerHTML = json.address;
+
+    document.getElementById("blockCount").innerHTML = json.status.blockCount;
+    document.getElementById("knownBlockCount").innerHTML = json.status.knownBlockCount;
+
+    document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
+    document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
+
+    return json.transactions;
+    }
+
+
+
+</script>
+</body>
+</html>

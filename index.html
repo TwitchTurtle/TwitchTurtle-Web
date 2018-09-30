@@ -1,0 +1,43 @@
+<html>
+<head>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#c4c4c4">
+<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<title>TwitchTurtle</title>
+</head>
+<body>
+<script>
+// AJAX Request to JSON
+            $.ajax({
+                url: "https://api.twitchturtle.com/status",
+                // Handle as Text
+                dataType: "text",
+                success: function(data) {
+                    // Parse JSON file
+                    var json = $.parseJSON(data);
+                    //Store data into a variable
+                    // Display Players
+                    if (json.synced) {
+                      $('#results').html('TwitchTurtle is synced!' );
+                    } else {
+                      $('#results').html('TwitchTurtle is not synced right now. It is ' + ((json.walletHeight / json.nodeHeight)*100).toFixed(1)+'% of the way there!' );
+                    }
+
+                }
+    });
+
+</script>
+<h1>Status</h1>
+<p id="results"></p>
+<a href="/register">Register!</a>
+</html>
