@@ -1,5 +1,6 @@
 <html>
 <head>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/sorttable.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>
@@ -12,83 +13,80 @@
 <link rel="manifest" href="/favicon/site.webmanifest">
 <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="/favicon/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="msapplication-TileColor" content="#c4c4c4">
 <meta name="msapplication-config" content="/favicon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <title>TwitchTurtle dashboard</title>
 </head>
 <body onload="modal.style.display='block'">
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      User name:<br>
-      <input type="text" name="username" id="username"><br>
-      User password:<br>
-      <input type="password" name="pwd" id="pwd">
-
-      <button onclick="submit()">
-        Login
-      </button>
-
-      <p>Don't have an account? <a href="/register">Register</a></p>
-    </div>
-
-  </div>
 
 <div class="title center-text">
-    <h1>TwitchTurtle</h1>
+    <h1>TwitchTurtle Dashboard</h1>
 </div>
-<div class="table-container">
+<div class="dashboard">
   <div class="checkbox-modal">
-  <hr>
-  <div id="wallet_status"  class="">
-    <span class="caret-icon"></span>&nbsp;status<span>
+    <hr>
+    <strong>Block:&nbsp;</strong><span id="blockCount">None</span>/<span id="knownBlockCount">None</span>
+    <h2>Wallet Info</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td id="name">Username</td>
+        </tr>
+        <tr>
+          <th>Available</th>
+          <td><span id="available_balance">0.00</span> TRTL</td>
+        </tr>
+        <tr>
+          <th>Locked / Unconfirmed</th>
+          <td><span id="locked_amount">0.00</span> TRTL</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td>
+            <span><p id="address">TRTL...</p>
+            <button class="address" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy"></i></button></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <strong>Block:&nbsp;</strong><span id="blockCount"></span>/<span id="knownBlockCount"></span>
-  <h2>Wallet Info</h2>
-  <table>
-    <tbody>
-      <tr>
-        <th>Name</th>
-        <td id="name">Username</td>
-      </tr>
-      <tr>
-        <th>Available</th>
-        <td><span id="available_balance"></span> TRTL</td>
-      </tr>
-      <tr>
-        <th>Locked / Unconfirmed</th>
-        <td><span id="locked_amount"></span> TRTL</td>
-      </tr>
-      <tr>
-        <th>Address</th>
-        <td>
-          <p id="address"></p>
-          <button onclick="copyToClipboard('#address')" title="copy address">
-            <i class="fa fa-copy"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container tx">
+    <h1>Latest Transactions</h1>
+    <div class="tx">
+      <table class="table table-hover sortable">
+              <thead>
+                <tr>
+                  <th id="time" class="">Time</th>
+                  <th class="">Name</th>
+                  <th class="">Message</th>
+                  <th class="sorttable_numeric">Amount</th>
+                  <th class="">USD</th>
+                </tr>
+              </thead>
+              <tbody id="rows">
+              </tbody>
+            <tfoot></tfoot></table>
+    </div>
+  </div>
 </div>
 
-<div class="container tx">
-  <h1>Latest Transactions</h1>
-  <div class="tx">
-    <table class="table table-hover sortable">
-            <thead>
-              <tr>
-                <th id="time" class="">Time</th>
-                <th class="">Name</th>
-                <th class="">Message</th>
-                <th class="sorttable_numeric">Amount</th>
-                <th class="">USD</th>
-              </tr>
-            </thead>
-            <tbody id="rows">
-            </tbody>
-          <tfoot></tfoot></table>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    User name:<br>
+    <input type="text" name="username" id="username"><br>
+    User password:<br>
+    <input type="password" name="pwd" id="pwd">
+
+    <button onclick="submit()">
+      Login
+    </button>
+
+    <p>Don't have an account? <a href="/register">Register</a></p>
   </div>
+
 </div>
 <script>
 var modal = document.getElementById('myModal');
