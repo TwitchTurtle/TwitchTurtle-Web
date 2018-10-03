@@ -32,7 +32,7 @@ body {
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 20px 25px;
     border: 1px solid #888;
     width: 20%;
     text-align: center;
