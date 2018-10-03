@@ -5,6 +5,8 @@
 <script src="/sorttable.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../register/css/util.css">
+  <link rel="stylesheet" type="text/css" href="../register/css/main.css">
 <link rel="stylesheet" type="text/css" href="index.css"></link>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -22,14 +24,23 @@
 <body onload="modal.style.display='block'">
   <div id="myModal" class="modal">
     <div class="modal-content">
-      User name:<br>
-      <input type="text" name="username" id="username"><br>
-      User password:<br>
-      <input type="password" name="pwd" id="pwd">
+      <img src="../img/login.svg" style="height: 12.5%"/><br>
 
-      <button onclick="submit()">
-        Login
-      </button>
+      <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+        <input class="input100" type="text" name="username" id="username">
+        <span class="focus-input100" data-placeholder="Username"></span>
+      </div>
+
+      <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+        <input class="input100" type="password" name="pwd" id="pwd">
+        <span class="focus-input100" data-placeholder="Password"></span>
+      </div>
+      <br>
+      <div class="container-login100-form-btn">
+        <button onclick="submit()" class="login100-form-btn">
+          Login
+        </button>
+      </div>
 
       <p>Don't have an account? <a href="/register">Register</a></p>
     </div>

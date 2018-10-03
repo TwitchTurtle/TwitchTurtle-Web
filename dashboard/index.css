@@ -15,6 +15,7 @@ body {
 
 /* The Modal (background) */
 .modal {
+    font-family: Arial, Helvetica, sans-serif;
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 999; /* Sit on top */
@@ -33,7 +34,9 @@ body {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 20%;
+    text-align: center;
+    border-radius: 3px;
 }
 
 /* The Close Button */
@@ -66,6 +69,20 @@ button.address {
   -ms-user-select: none;
   vertical-align: middle;
   display: inline;
+}
+button.login {
+  background-color:#696b69;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:11px;
+  padding:7px 17px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #2f6627;
 }
 .title {
     display: block;
