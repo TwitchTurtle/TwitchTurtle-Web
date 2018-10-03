@@ -20,7 +20,21 @@
 <title>TwitchTurtle dashboard</title>
 </head>
 <body onload="modal.style.display='block'">
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      User name:<br>
+      <input type="text" name="username" id="username"><br>
+      User password:<br>
+      <input type="password" name="pwd" id="pwd">
 
+      <button onclick="submit()">
+        Login
+      </button>
+
+      <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+
+  </div>
 <div class="title center-text">
     <h1>TwitchTurtle Dashboard</h1>
 </div>
@@ -73,21 +87,7 @@
   </div>
 </div>
 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    User name:<br>
-    <input type="text" name="username" id="username"><br>
-    User password:<br>
-    <input type="password" name="pwd" id="pwd">
 
-    <button onclick="submit()">
-      Login
-    </button>
-
-    <p>Don't have an account? <a href="/register">Register</a></p>
-  </div>
-
-</div>
 <script>
 var modal = document.getElementById('myModal');
 

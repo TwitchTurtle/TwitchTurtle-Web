@@ -17,11 +17,8 @@ body {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    z-index: 999; /* Sit on top */
+    padding-top: 20%; /* Location of the box */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -36,7 +33,7 @@ body {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
 }
 
 /* The Close Button */
@@ -89,4 +86,12 @@ table {
 }
 .container.tx {
     left: 50%;
+}
+@media screen and (max-width: 430px) {
+  .modal {
+    padding-top: 50%; /* Location of the box */
+  }
+  .modal-content {
+      width: 75%;
+  }
 }
