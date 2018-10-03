@@ -4,13 +4,13 @@ body {
   height: 100%;
   align-items: center;
   overflow-y: scroll;
-  background-color: #212121;
+  background-color: #fff;
   flex-direction: column;
   justify-content: center;
   background-attachment: fixed;
   padding: 0px;
   margin: 0px;
-  color: white;
+  color: black;
 }
 
 /* The Modal (background) */
@@ -59,7 +59,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: auto;
-  color: white;
+  color: black;
 }
 button.address {
   background-color: unset;
@@ -97,9 +97,6 @@ button.login {
 table {
   word-break: break-word;
   border-collapse: collapse;
-}
-.fa {
-  color: white
 }
 .container.tx {
     left: 50%;
