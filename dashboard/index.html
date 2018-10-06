@@ -98,7 +98,6 @@
   </div>
 </div>
 
-
 <script>
 var modal = document.getElementById('myModal');
 
@@ -127,8 +126,6 @@ function submit() {
   sorttable.innerSortFunction.apply(document.getElementById('time'), [])
   sorttable.innerSortFunction.apply(document.getElementById('time'), [])
 }
-
-
 
 function hex2a(hexx) {
     var hex = hexx.toString();//force conversion
@@ -184,7 +181,6 @@ function transactionsJSON() {
       swal("Error!", 'Incorrect Username/Password', "error").then(() => {
         modal.style.display='block'
       });
-
     }
     json = JSON.parse(resp);
     document.getElementById("name").innerHTML = json.name;
@@ -198,9 +194,6 @@ function transactionsJSON() {
 
     return json.transactions;
     }
-
-
-
 </script>
 </body>
 </html>

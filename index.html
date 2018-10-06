@@ -18,26 +18,25 @@
 <body>
 <script>
 // AJAX Request to JSON
-            $.ajax({
-                url: "https://api.twitchturtle.com/status",
-                // Handle as Text
-                dataType: "text",
-                success: function(data) {
-                    // Parse JSON file
-                    var json = $.parseJSON(data);
-                    //Store data into a variable
-                    // Display Players
-                    if (json.synced) {
-                      $('#results').html('TwitchTurtle is synced!' );
-                    } else {
-                      $('#results').html('TwitchTurtle is not synced right now. It is ' + ((json.walletHeight / json.nodeHeight)*100).toFixed(1)+'% of the way there!' );
-                    }
-
-                }
-    });
-
+$.ajax({
+    url: "https://api.twitchturtle.com/status",
+    // Handle as Text
+    dataType: "text",
+    success: function(data) {
+        // Parse JSON file
+        var json = $.parseJSON(data);
+        //Store data into a variable
+        // Display Players
+        if (json.synced) {
+          $('#results').html('TwitchTurtle is synced!' );
+        } else {
+          $('#results').html('TwitchTurtle is not synced right now. It is ' + ((json.walletHeight / json.nodeHeight)*100).toFixed(1)+'% of the way there!' );
+        }
+    }
+});
 </script>
 <h1>Status</h1>
 <p id="results"></p>
-<a href="/register">Register!</a>
+<a href="/register">Register!</a><br>
+<a href="/dashboard">Dashboard</a>
 </html>
