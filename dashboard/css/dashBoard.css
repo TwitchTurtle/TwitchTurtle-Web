@@ -1,0 +1,98 @@
+
+body {
+	font-family: Poppins-Regular, sans-serif;
+	position: relative;
+	height: 100%;
+	align-items: center;
+	overflow-y: scroll;
+	background-color: #f2f2f2;
+	flex-direction: column;
+	justify-content: center;
+	background-attachment: fixed;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Main Style */
+
+.headerMain {
+	background-color:red;
+	height: 100px;
+	background-color:#212121;
+	box-shadow: 19px 10px 10px #cecece;
+}
+.headerTleft {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100px;
+	padding-left:10px;
+	color:#8e8a8a;
+}
+.logoHeader {
+	height:100%;
+	padding:20px;
+	padding-left:30px;
+	float:left;
+}
+
+.contenBox {
+	max-width:80%;
+	background-color:#fff;
+	margin-left:auto;
+	margin-right:auto;
+	padding:20px;
+	border: 1px solid #e0e0e0;
+    border-radius: 10px;
+	box-shadow: 1px 1px 4px #cecece;
+}
+
+/* Table css */
+.tb {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.th-td {
+    padding: 2px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+	font-size:14px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+/* The Modal (background) */
+.modal {
+	
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    padding-top: 5%; /* Location of the box */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	font-family: Poppins-Regular, sans-serif;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px 25px;
+    border: 1px solid #888;
+    width: 390px;
+    border-radius: 3px;
+}
+
+
+
+@media screen and (max-width: 430px) {
+  .modal {
+    padding-top: 50%; /* Location of the box */
+  }
+  .modal-content {
+      width: 75%;
+  }
+}
