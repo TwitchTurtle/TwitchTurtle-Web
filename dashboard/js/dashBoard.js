@@ -47,9 +47,6 @@ function tokensOrBust() {
     } else {
       window.location.replace("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://twitchturtle.com/dashboard/&response_type=code&scope=donations.create")
     };
-  } else {
-    setInterval(submit(), 10000);
-  }
 }
 
 var profile;
@@ -218,4 +215,4 @@ function withdraw(address) {
   });
 }
 
-$(document).ready(function() {tokensOrBust()});
+$(document).ready(function() {tokensOrBust();setInterval(submit(), 10000)});
