@@ -70,7 +70,7 @@ function submit() {
         });
       };
     });
-    sorttable.innerSortFunction.apply(document.getElementById('time'), [])
+    sorttable.makeSortable(document.getElementById('time'));
   });
 
 }
