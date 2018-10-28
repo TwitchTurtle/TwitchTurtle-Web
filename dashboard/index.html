@@ -58,6 +58,15 @@
 					<td id="name">Username</td>
 				</tr>
 				<tr>
+					<th>Public Address:</th>
+					<td>
+						<span id="address" style="font-size:11px;word-break: break-all">
+							TRTL...
+						</span>
+            					<button class="address p-l-10" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy" style="font-size:14px;"></i></button>
+					</td>
+				</tr>
+				<tr>
 					<th>Available:</th>
 					<td><span id="available_balance">0.00</span> TRTL</td>
 				</tr>
@@ -65,20 +74,11 @@
 					<th style="width: 50%;">Locked /<wbr> Unconfirmed:</th>
 					<td><span id="locked_amount">0.00</span> TRTL</td>
 				</tr>
-				<tr>
-					<th>Address:</th>
-					<td>
-						<span id="address" style="font-size:11px;word-break: break-all">
-							TRTL...
-						</span>
-            <button class="address p-l-10" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy" style="font-size:14px;"></i></button>
-					</td>
-				</tr>
-        <tr>
+        			<tr>
 					<th>Withdraw:</th>
 					<td>
 						<textarea id="withdraw" style="    overflow: hidden;margin-top: 5.5px;margin-bottom: 0px;height: 36px;width: 51%;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
-            <button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
+            					<button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
 					</td>
 				</tr>
 			</tbody>
