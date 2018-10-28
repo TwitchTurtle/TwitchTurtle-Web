@@ -69,8 +69,7 @@ function submit() {
         });
       };
     });
-    console.log(document.getElementsByTagName("time")[0]);
-    sorttable.innerSortFunction.apply(document.getElementById('rows')[0], []);
+    sorttable.innerSortFunction.apply(document.getElementById("time"), []);
   });
 
 }
