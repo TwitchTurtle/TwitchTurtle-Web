@@ -94,6 +94,7 @@ function copyToClipboard(element) {
 
 function convertExtraToName(extra) {
   try {
+    extra = extra.substring(66);
     var x = JSON.parse(hex2a(extra));
     return x.name
   }
@@ -103,6 +104,7 @@ function convertExtraToName(extra) {
 }
 function convertExtraToMessage(extra) {
   try {
+    extra = extra.substring(66);
     var x = JSON.parse(hex2a(extra));
     return x.message
   }
