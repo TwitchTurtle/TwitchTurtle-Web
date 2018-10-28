@@ -93,7 +93,6 @@ function copyToClipboard(element) {
 function convertExtraToName(extra) {
   try {
     extra = extra.substring(66);
-    console.log(extra);
     var x = JSON.parse(hex2a(extra));
     return x.name
   }
@@ -217,4 +216,4 @@ function withdraw(address) {
   });
 }
 
-$(document).ready(function() {tokensOrBust();setInterval(submit(), 10000)});
+$(document).ready(function() {tokensOrBust();setInterval(submit, 10000)});
