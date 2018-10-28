@@ -216,4 +216,4 @@ function withdraw(address) {
   });
 }
 
-$(document).ready(function() {tokensOrBust();setInterval(submit, 10000)});
+$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000)});
