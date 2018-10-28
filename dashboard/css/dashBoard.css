@@ -35,6 +35,8 @@ body {
 	float:left;
 }
 
+
+
 .contenBox {
 	max-width:80%;
 	background-color:#fff;
@@ -42,8 +44,14 @@ body {
 	margin-right:auto;
 	padding:20px;
 	border: 1px solid #e0e0e0;
-    border-radius: 10px;
+	border-radius: 10px;
 	box-shadow: 1px 1px 4px #cecece;
+}
+
+@media screen and (max-width: 761px) {
+  .contenBox {
+    max-width:100%;
+  }
 }
 
 /* Table css */
