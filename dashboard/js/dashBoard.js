@@ -93,7 +93,7 @@ function copyToClipboard(element) {
 
 function convertExtraToName(extra) {
   try {
-    extra = "7b27e" + extra.split("7b276e").pop();
+    extra = "7b276e" + extra.split("7b276e").pop();
     console.log(extra);
     var x = JSON.parse(hex2a(extra));
     return x.name
@@ -104,7 +104,7 @@ function convertExtraToName(extra) {
 }
 function convertExtraToMessage(extra) {
   try {
-    extra = "7b27e" + extra.split("7b276e").pop();
+    extra = "7b276e" + extra.split("7b276e").pop();
     var x = JSON.parse(hex2a(extra));
     return x.message
   }
