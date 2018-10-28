@@ -52,8 +52,8 @@ function tokensOrBust() {
 
 var profile;
 function submit() {
-  $("#rows tr").detach();
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
+    $("#rows tr").detach();
     $.each(transactionsJSON(), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
@@ -93,7 +93,7 @@ function copyToClipboard(element) {
 
 function convertExtraToName(extra) {
   try {
-    extra = "7b276e" + extra.split("7b276e").pop();
+    extra = "7b226e" + extra.split("7b226e").pop();
     console.log(extra);
     var x = JSON.parse(hex2a(extra));
     return x.name
@@ -104,7 +104,7 @@ function convertExtraToName(extra) {
 }
 function convertExtraToMessage(extra) {
   try {
-    extra = "7b276e" + extra.split("7b276e").pop();
+    extra = "7b226e" + extra.split("7b226e").pop();
     var x = JSON.parse(hex2a(extra));
     return x.message
   }
