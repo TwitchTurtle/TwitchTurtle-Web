@@ -57,7 +57,6 @@ function submit() {
     $.each(transactionsJSON(), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
-          console.log(value.transactions)
           $('#rows').append(
             '<tr>' +
               '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
@@ -70,7 +69,7 @@ function submit() {
         });
       };
     });
-    console.log(document.getElementsByTagName("time"));
+    console.log(document.getElementsByTagName("time")[0]);
     sorttable.innerSortFunction.apply(document.getElementsByTagName("time")[0], []);
   });
 
@@ -95,6 +94,7 @@ function copyToClipboard(element) {
 function convertExtraToName(extra) {
   try {
     extra = extra.substring(66);
+    console.log(extra);
     var x = JSON.parse(hex2a(extra));
     return x.name
   }
@@ -164,7 +164,6 @@ function withdraw(address) {
       return
   }
 
-  console.log(address);
   if(!address) {
     swal("Error!", "You must enter an address to withdraw to!", "error");
     return
