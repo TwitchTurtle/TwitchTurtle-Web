@@ -167,7 +167,7 @@ function withdraw(address) {
     return
   }
 
-  if(!/^TRTL[0-9A-Z]{95}$/gmi.test(address)) {
+  if(!/^TRTL(?:[0-9A-Z]{95}|[0-9A-Z]{183})$/gmi.test(address)) {
     console.log('Invalid address!');
     swal("Invalid address!", "", "error",);
     return
