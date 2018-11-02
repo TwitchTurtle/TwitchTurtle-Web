@@ -52,8 +52,8 @@ function tokensOrBust() {
 
 var profile;
 function submit() {
-  $("#rows tr").detach();
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
+    $("#rows tr").detach();
     $.each(transactionsJSON(), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
