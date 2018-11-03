@@ -9,9 +9,9 @@
 		<title>TwitchTurtle</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		<link href="assets/css/font-awesome.min.css" rel="stylesheet"> <!--load all styles -->
+		<link rel="preload" href="assets/css/main.css" as="style"/>
+
+		<link href="assets/css/font-awesome.min.css" rel="preload" as="style"> <!--load all styles -->
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -140,6 +140,7 @@
 			</footer>
 
 		<!-- Scripts -->
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
