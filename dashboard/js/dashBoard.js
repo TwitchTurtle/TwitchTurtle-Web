@@ -209,7 +209,7 @@ function withdraw(address) {
         )
       }
       json = JSON.parse(resp);
-      return json;
+      swal("Success!", "Your withdraw has gone through! You should see it in your wallet soon.", "success",);
     } else {
       swal("Withdraw Cancelled!", "", "error",);
     }
