@@ -76,7 +76,9 @@
 				</tr>
 				<tr>
 					<th>Minimum donation to show on screen: (in USD)</th>
-					<td><input id="minalert_amount" placeholder="0.00"></td>
+					<td>
+						<input id="minalert_amount" placeholder="0.00" onchange="minAlert();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+					</td>
 				</tr>
         			<tr>
 					<th>Withdraw:</th>
