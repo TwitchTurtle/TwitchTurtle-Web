@@ -74,6 +74,12 @@
 					<th style="width: 50%;">Locked /<wbr> Unconfirmed:</th>
 					<td><span id="locked_amount">0.00</span> TRTL</td>
 				</tr>
+				<tr>
+					<th>Minimum donation to show on screen: (in USD)</th>
+					<td>
+						<input id="minalert_amount" type="number" placeholder="0.00" onchange="minAlert();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+					</td>
+				</tr>
         			<tr>
 					<th>Withdraw:</th>
 					<td>
