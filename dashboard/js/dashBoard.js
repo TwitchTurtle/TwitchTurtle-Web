@@ -145,6 +145,8 @@ function transactionsJSON() {
 
     document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
+    
+    document.getElementById("minalert_amount").placeholder = json.minAlert;
 
     return json.transactions;
     }
