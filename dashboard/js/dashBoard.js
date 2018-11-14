@@ -216,4 +216,21 @@ function withdraw(address) {
   });
 }
 
+function minAlert(minAlertNum) {
+    var token = getCookie("token");
+    if (token == "" || token == null) {
+        return
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.twitchturtle.com/minAlert", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
+    xhr.send(JSON.stringify({
+    	minAlertNum: minAlertNum
+    }));
+    xhr.onload = function() {
+    	console.log(this.responseText)
+    }
+}
+
 $(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000)});
