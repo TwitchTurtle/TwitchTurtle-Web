@@ -216,7 +216,7 @@ function withdraw(address) {
   });
 }
 
-function minAlert(minAlertNum) {
+function minAlert() {
     var token = getCookie("token");
     if (token == "" || token == null) {
         return
@@ -226,7 +226,7 @@ function minAlert(minAlertNum) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
     xhr.send(JSON.stringify({
-    	minAlertNum: minAlertNum
+    	minAlertNum: document.getElementById('minalert_amount').value
     }));
     xhr.onload = function() {
     	console.log(this.responseText)
