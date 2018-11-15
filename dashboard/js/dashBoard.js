@@ -63,8 +63,7 @@ function submit() {
               '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
               '<td>'+(value2.amount/100).toFixed(2)+'</td>' +
               '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
-            '</tr>'
-          );
+            '</tr>';
         });
       };
     });
