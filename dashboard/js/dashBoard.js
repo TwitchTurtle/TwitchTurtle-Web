@@ -53,12 +53,11 @@ function tokensOrBust() {
 var profile;
 function submit() {
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
-    $("#rows tr").detach();
+    var transactionTable = '';
     $.each(transactionsJSON(), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
-          $('#rows').append(
-            '<tr>' +
+          transactionTable += '<tr>' +
               '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
               '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
               '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
@@ -69,6 +68,7 @@ function submit() {
         });
       };
     });
+    $('#rows').html(transactionTable);
     sorttable.innerSortFunction.apply(document.getElementById("time"), []);
   });
 
