@@ -110,6 +110,8 @@ function convertExtraToMessage(extra) {
   }
 }
 
+
+lastTransactions = []
 function transactionsJSON() {
     var resp ;
     var xmlHttp ;
@@ -146,6 +148,12 @@ function transactionsJSON() {
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
     
     document.getElementById("minalert_amount").placeholder = json.minAlert;
+
+    if(lastTransactions.length() === json.transactions.length()) {
+      return
+    }
+
+    lastTransactions = json.transactions
 
     return json.transactions;
     }
