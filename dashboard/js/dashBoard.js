@@ -67,6 +67,7 @@ function submit() {
         });
       };
     });
+    }
     $('#rows').html(transactionTable);
     sorttable.innerSortFunction.apply(document.getElementById("time"), []);
   });
@@ -146,7 +147,7 @@ function transactionsJSON() {
 
     document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
-    
+
     document.getElementById("minalert_amount").placeholder = json.minAlert;
 
     if(lastTransactions.length === json.transactions.length) {
