@@ -149,7 +149,7 @@ function transactionsJSON() {
     
     document.getElementById("minalert_amount").placeholder = json.minAlert;
 
-    if(lastTransactions.length === json.transactions.length {
+    if(lastTransactions.length === json.transactions.length) {
       return
     }
 
