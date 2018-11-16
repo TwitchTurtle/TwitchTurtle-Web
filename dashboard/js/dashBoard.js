@@ -67,6 +67,8 @@ function submit() {
         });
       };
     });
+    if(transactionTable === '') {
+      return
     }
     $('#rows').html(transactionTable);
     sorttable.innerSortFunction.apply(document.getElementById("time"), []);
