@@ -61,7 +61,7 @@ function submit() {
               '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
               '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
               '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
-              '<td sorttable_customkey="' + Math.abs(value2.amount) + '">'+(value2.amount/100).toFixed(2)+'</td>' +
+              '<td sorttable_customkey="' + value2.amount + '">'+(value2.amount/100).toFixed(2)+'</td>' +
               '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
             '</tr>';
         });
