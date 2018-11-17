@@ -250,4 +250,4 @@ function logout() {
     location = "https://twitchturtle.com";
 }
 
-$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000)});
+$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000);console.log('%cTwitchTurtle Dev Console', 'background: green; color: white; font-size: 55px');console.log('%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.twitchturtle.com', 'background: red; color: white; font-size: 35px');});
