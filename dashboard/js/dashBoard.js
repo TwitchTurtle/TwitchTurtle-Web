@@ -61,7 +61,7 @@ function submit() {
               '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
               '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
               '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
-              '<td sorttable_customkey="' + (value2.amount/100) + '">'+(value2.amount/100).toFixed(2)+'</td>' +
+              '<td sorttable_customkey="' + value2.amount + '">'+(value2.amount/100).toFixed(2)+'</td>' +
               '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
             '</tr>';
         });
@@ -246,4 +246,9 @@ function minAlert() {
     }
 }
 
-$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000)});
+function logout() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    location = "https://twitchturtle.com";
+}
+
+$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000);console.log('%cTwitchTurtle Dev Console', 'background: green; color: white; font-size: 55px');console.log('%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.twitchturtle.com', 'background: red; color: white; font-size: 35px');});
