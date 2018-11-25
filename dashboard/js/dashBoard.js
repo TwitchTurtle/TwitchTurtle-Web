@@ -54,7 +54,7 @@ var profile;
 function submit() {
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
     var transactionTable = '';
-    $.each(transactionsJSON(), function(index, value){
+    $.each(transactionsJSON(data.data.quotes.USD.price), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
           transactionTable += '<tr>' +
@@ -115,7 +115,7 @@ function convertExtraToMessage(extra) {
 
 
 lastTransactions = []
-function transactionsJSON() {
+function transactionsJSON(usdPrice) {
     var resp ;
     var xmlHttp ;
 
@@ -149,6 +149,7 @@ function transactionsJSON() {
 
     document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
+    document.getElementById("usd_balance").innerHTML = ((json.balance.availableBalance/100)*usdPrice).toFixed(2);
 
     document.getElementById("minalert_amount").placeholder = json.minAlert;
 
