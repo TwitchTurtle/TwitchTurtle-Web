@@ -102,6 +102,7 @@ function convertExtraToName(extra) {
     return "Anonymous";
   }
 }
+
 function convertExtraToMessage(extra) {
   try {
     extra = extra.substring(66);
@@ -160,7 +161,7 @@ function transactionsJSON(usdPrice) {
     lastTransactions = json.transactions
 
     return json.transactions;
-    }
+}
 
 function withdraw(address) {
 
