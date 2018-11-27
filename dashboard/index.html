@@ -1,17 +1,14 @@
 <html>
 <head>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/sorttable.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/dashBoard.css">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -30,7 +27,6 @@
 <title>TwitchTurtle dashboard</title>
 </head>
 
-
 <body>
 
 <!-- Header Start-->
@@ -45,7 +41,7 @@
 <!-- Header End-->
 
 <div class="dashboard">
-
+	
 <!-- Wallet -->
 	<div class="contenBox m-t-80">
 		<strong>Block:&nbsp;</strong><span id="blockCount">None</span>/<span id="knownBlockCount">None</span>
@@ -69,9 +65,9 @@
 				<tr>
 					<th>Available:</th>
 					<td>
-            <span id="available_balance">0.00</span> TRTL /
-            $<span id="usd_balance">0.00</span> USD
-          </td>
+            					<span id="available_balance">0.00</span> TRTL /
+            					$<span id="usd_balance">0.00</span> USD
+          				</td>
 				</tr>
 				<tr>
 					<th style="width: 35%;">Locked /<wbr> Unconfirmed:</th>
@@ -86,7 +82,7 @@
         			<tr>
 					<th>Withdraw:</th>
 					<td>
-						<textarea id="withdraw" style="    overflow: hidden;margin-top: 5.5px;margin-bottom: 0px;height: 36px;width: 51%;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
+						<textarea id="withdraw" style="overflow: hidden;margin-top: 5.5px;margin-bottom: 0px;height: 36px;width: 51%;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
             					<button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
 					</td>
 				</tr>
@@ -109,8 +105,7 @@
 						<th class="th-td">USD</th>
 					</tr>
 				</thead>
-				<tbody id="rows">
-				</tbody>
+				<tbody id="rows"></tbody>
 				<tfoot></tfoot>
 			</table>
 		</div>
@@ -119,7 +114,7 @@
 <!-- Transactions End -->
 
 <script src="js/dashBoard.js"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113862764-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
