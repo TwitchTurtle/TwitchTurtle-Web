@@ -1,17 +1,14 @@
 <html>
 <head>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/sorttable.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/dashBoard.css">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
@@ -30,9 +27,7 @@
 <title>TwitchTurtle dashboard</title>
 </head>
 
-
 <body>
-
 <!-- Header Start-->
 <div class="headerMain">
 	<img src="images/avatar-01.png" alt="TwitchTurtle"  class="logoHeader">
@@ -68,17 +63,15 @@
 				<tr>
 					<th>Address:</th>
 					<td>
-						<span id="address" style="font-size:11px;">
-							TRTL...
-						</span>
-            <button class="address p-l-10" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy" style="font-size:14px;"></i></button>
+						<span id="address" style="font-size:11px;">TRTL...</span>
+            					<button class="address p-l-10" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy" style="font-size:14px;"></i></button>
 					</td>
 				</tr>
-        <tr>
+       				<tr>
 					<th>Withdraw:</th>
 					<td>
 						<textarea id="withdraw" style="overflow: hidden; margin-top: 0px; margin-bottom: 0px; height: 20px; width: 1000px;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
-            <button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
+            					<button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
 					</td>
 				</tr>
 			</tbody>
@@ -100,8 +93,7 @@
 						<th class="th-td">USD</th>
 					</tr>
 				</thead>
-				<tbody id="rows">
-				</tbody>
+				<tbody id="rows"></tbody>
 				<tfoot></tfoot>
 			</table>
 		</div>
