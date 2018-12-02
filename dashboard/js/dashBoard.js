@@ -142,8 +142,9 @@ function transactionsJSON(usdPrice) {
       tokensOrBust();
     }
     json = JSON.parse(resp);
-    document.getElementById("name").innerHTML = json.name;
     document.getElementById("address").innerHTML = json.address;
+    document.getElementById("userLink").innerHTML = "https://trtl.tv/" + json.name;
+	  document.getElementById("userLink").href = "https://trtl.tv/" + json.name;
 
     document.getElementById("blockCount").innerHTML = json.status.blockCount;
     document.getElementById("knownBlockCount").innerHTML = json.status.knownBlockCount;
