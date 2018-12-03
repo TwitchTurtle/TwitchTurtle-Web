@@ -42,7 +42,6 @@ function tokensOrBust() {
         document.cookie = "token="+profile.token;
         window.history.pushState({}, document.title, "/dashboard" + "");
         submit();
-        // document.getElementById("address").innerHTML = profile.address;
       }
     } else {
       window.location.replace("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://twitchturtle.com/dashboard/&response_type=code&scope=donations.create")
@@ -144,7 +143,7 @@ function transactionsJSON(usdPrice) {
     json = JSON.parse(resp);
     document.getElementById("address").innerHTML = json.address;
     document.getElementById("userLink").innerHTML = "https://trtl.tv/" + json.name;
-	  document.getElementById("userLink").href = "https://trtl.tv/" + json.name;
+    document.getElementById("userLink").href = "https://trtl.tv/" + json.name;
 
     document.getElementById("blockCount").innerHTML = json.status.blockCount;
     document.getElementById("knownBlockCount").innerHTML = json.status.knownBlockCount;
@@ -155,10 +154,7 @@ function transactionsJSON(usdPrice) {
 
     document.getElementById("minalert_amount").placeholder = json.minAlert;
 
-    if(lastTransactions.length === json.transactions.length) {
-      return
-    }
-
+    if(lastTransactions.length === json.transactions.length) {return}
     lastTransactions = json.transactions
 
     return json.transactions;
