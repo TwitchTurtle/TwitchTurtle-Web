@@ -1,0 +1,313 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color: #f5f5f5;font-family: Roboto,sans-serif;margin: 0px">
+<div id="userImg" style="width: 100%;height: 200px;margin-right: auto;background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)), #fff center center / cover no-repeat;">
+	<a id="userLink" style="color: #fff;position: absolute;top: 150px;right: 30px;">twitch.tv/TwitchTurtleOfficial</a>
+</div>
+<div class="container">
+  <img id="userLogo" style="height: 128px;display: block;margin: auto;border-radius: 5%;" />
+  <br>
+  <h2 id="userName" style="font-family: 'Open Sans Condensed', sans-serif;font-weight: 900;font-size: 2em;"></h2>
+  <br>
+  <input class="form" id="name" name="textinput" type="text" value="" placeholder="Name">
+  <br>
+  <textarea class="form" id="message" style="overflow: hidden;margin-top: 5.5px;margin-bottom: 0px;height: 5em;font-size: 1.15em;" placeholder="Your Message"></textarea>
+  <br>
+  <button class="button" onclick="submit()" title="Donate!">Donate!</button>
+  <div id="qr_address" class="qr_address"></div>
+</div>
+
+<footer class="footer-distributed">
+
+	<div class="footer-right">
+		<a href="https://twitch.tv/TwitchTurtleOfficial"><i class="fab fa-twitch"></i></a>
+		<a href="https://chat.TwitchTurtle.com"><i class="fab fa-discord"></i></a>
+		<a href="https://reddit.com/TRTL"><i class="fab fa-reddit"></i></a>
+		<a href="https://github.com/TwitchTurtle/"><i class="fab fa-github"></i></a>
+	</div>
+
+	<div class="footer-left">
+		<p class="footer-links">
+			<a href="https://twitchturtle.com">TwitchTurtle</a>
+			·
+			<a href="https://turtlecoin.lol">TurtleCoin</a>
+			·
+			<a href="https://docs.twitchturtle.com">Help</a>
+			·
+			<a href="https://docs.turtlecoin.lol/getting-started/">Getting Started</a>
+			·
+			<a href="https://twitchturtle.com/tos.html">Terms of Service</a>
+		</p>
+		<p>Twitch Turtle &copy; 2018</p>
+	</div>
+
+</footer>
+
+
+<script async src="/assets/js/qrcode.js"></script>
+<script async src="/assets/js/cryptonote.min.js"></script>
+<script async src="/assets/js/sweetalert2.all.min.js"></script>
+<script>
+function createIntegratedAddress(address, paymentid) {
+  var prefix = 3914525
+  try {
+    var addr = CryptoNote.decode_address(address, prefix)
+    if (!addr) return false
+
+    return CryptoNote.encode_address(addr.publicViewKey, addr.publicSpendKey, prefix, paymentid)
+  } catch (e) {
+    return false
+  }
+}
+	
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+	
+function ascii_to_hexa(str) {
+  	var arr1 = [];
+  	for (var n = 0, l = str.length; n < l; n ++)
+       {
+  		var hex = Number(str.charCodeAt(n)).toString(16);
+  		arr1.push(hex);
+  	 }
+  	return arr1.join('');
+}
+
+function submit() {
+    var name = document.getElementById("name").value;
+    var message = document.getElementById("message").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.twitchturtle.com/tipper", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      extra: ascii_to_hexa('{"name":"' + name + '","message":"' + message + '"}')
+    }));
+    xhr.onload = function() {
+ 	var intAddr = createIntegratedAddress(address, JSON.parse(this.responseText).paymentID);
+	swal({
+            confirmButtonColor: '#4caf50',
+            allowOutsideClick: false,
+            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + intAddr + '</h3></div><p>Make sure to send at least ' + minAlert + ' USD to make your donation show up on stream</p>'
+        });
+	var qrcode = new QRCode(document.getElementById("qrcode"),{
+		text: intAddr,
+		width: 400,
+		height: 400,
+		colorDark: "#000000",
+		colorLight: "#ffffff",
+		correctLevel: QRCode.CorrectLevel.H,
+		logo: 'assets/img/logo.png',
+	});
+    }
+}
+window.onload = function(){
+    var username = capitalizeFirstLetter(window.location.pathname.replace(/\//ig, "").replace(/%20/gm, " "));
+    document.title = username + "'s TwitchTurtle donation page.";
+    document.getElementById("userName").innerHTML = username + "'s donation page."
+    document.getElementById("userLink").innerHTML = "https://twitch.tv/" + username;
+    document.getElementById("userLink").href = "https://twitch.tv/" + username;
+
+
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://api.twitchturtle.com/address/" + username, false );
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.onreadystatechange = () => {
+        if (xmlHttp.status === 400) {
+            Swal(
+  		'404 - Streamer Not Found',
+  		'This streamer either does not exist, or has not yet registered for TwitchTurtle',
+  		'error'
+	    )
+        }
+    };
+    xmlHttp.send( null );
+    var resp = JSON.parse(xmlHttp.responseText);
+    address = resp.address;
+    minAlert = resp.minDonation;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.twitch.tv/kraken/channels/" + username + "?client_id=rgkaxvgg18t24iqtys37zqa6s9r9sb", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+    xhr.onload = function() {
+	var res = JSON.parse(this.response);
+      	document.getElementById("userLogo").src = (res.logo);
+	document.getElementById("userImg").style.background = "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)), url('" + (res.profile_banner) + "') center center / cover no-repeat";
+    }
+}
+</script>
+<style>
+img {
+    margin:auto;
+}
+.form{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    overflow: hidden;
+    font-size: 1.15em;
+}
+.button {
+  display: flex;
+  overflow: hidden;
+
+  margin: auto;
+  margin-top: 0.75%;
+  padding: 12px 12px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+
+  background: #4682b4;
+  color: #FFF;
+  border: 0 none;
+  border-radius: 4px;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+
+  box-shadow: 2px 5px 10px #e4e4e4;
+}
+.button:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+}
+
+.button:active {
+    transition: all 150ms linear;
+    opacity: .75;
+}
+
+.button:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+}
+
+.container {
+	max-width: 85%;
+	text-align: center;
+	margin: auto;
+	display: block;
+	margin-top: 3%;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+	border-radius: 2px;
+	background-color: #fff;
+	padding: 20px;
+}
+@media screen and (max-width: 761px) {
+	.container {
+    		max-width: 100%;
+	}
+}
+
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+	padding: 45px 50px;
+	margin-top: 80px;
+}
+
+.footer-distributed .footer-left p{
+	color:  #8f9296;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #ffffff;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.footer-distributed p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-right{
+	float: right;
+	margin-top: 6px;
+	max-width: 180px;
+}
+
+.footer-distributed .footer-right a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-left: 3px;
+}
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+i.fab{
+	line-height: 35px;
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" lazyload>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" lazyload>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113862764-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113862764-3');
+</script>
+</body>
