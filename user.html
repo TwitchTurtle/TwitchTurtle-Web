@@ -82,6 +82,10 @@ function submit() {
     var name = document.getElementById("name").value;
     var message = document.getElementById("message").value;
 
+    if (name.length < 2) { // Streamlabs does not accept names < 2 chars, just remove name
+	return createAddress(address);
+    }
+	
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.twitchturtle.com/tipper", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -89,7 +93,11 @@ function submit() {
       extra: ascii_to_hexa('{"name":"' + name + '","message":"' + message + '"}')
     }));
     xhr.onload = function() {
- 	var intAddr = createIntegratedAddress(address, JSON.parse(this.responseText).paymentID);
+	var intAddr = createIntegratedAddress(address, JSON.parse(this.responseText).paymentID);
+ 	return createAddress(intAddr);
+    }
+}
+function createAddress(address) {
 	swal({
             confirmButtonColor: '#4caf50',
             allowOutsideClick: false,
@@ -104,7 +112,6 @@ function submit() {
 		correctLevel: QRCode.CorrectLevel.H,
 		logo: 'assets/img/logo.png',
 	});
-    }
 }
 window.onload = function(){
     var username = capitalizeFirstLetter(window.location.pathname.replace(/\//ig, "").replace(/%20/gm, " "));
