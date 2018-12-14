@@ -147,7 +147,7 @@ function transactionsJSON(usdPrice) {
     document.getElementById("userLink").innerHTML = "https://trtl.tv/" + capitalizeFirstLetter(json.name);
     document.getElementById("userLink").href = "https://trtl.tv/" + capitalizeFirstLetter(json.name);
 
-    document.getElementById("blockCount").innerHTML = Boolean(Math.abs(json.status.blockCount - json.status.knownBlockCount) < 5);
+    document.getElementById("blockCount").innerHTML = capitalizeFirstLetter(Boolean(Math.abs(json.status.blockCount - json.status.knownBlockCount) < 5).toString());
 
     document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
