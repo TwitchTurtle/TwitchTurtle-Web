@@ -49,28 +49,39 @@
 		<table class="tb m-t-20">
 			<tbody>
 				<tr>
-					<th width="250">Name:</th>
-					<td id="name">Username</td>
+					<th width="250">Donation Link:</th>
+					<td id="name"><a id="userLink">Username</a></td>
 				</tr>
 				<tr>
-					<th>Available:</th>
-					<td><span id="available_balance">0.00</span> TRTL</td>
-				</tr>
-				<tr>
-					<th>Locked / Unconfirmed:</th>
-					<td><span id="locked_amount">0.00</span> TRTL</td>
-				</tr>
-				<tr>
-					<th>Address:</th>
+					<th>Public Address:</th>
 					<td>
-						<span id="address" style="font-size:11px;">TRTL...</span>
+						<span id="address" style="font-size:11px;word-break: break-all">
+							TRTL...
+						</span>
             					<button class="address p-l-10" onclick="copyToClipboard('#address')" title="copy address"><i class="fa fa-copy" style="font-size:14px;"></i></button>
 					</td>
 				</tr>
-       				<tr>
+				<tr>
+					<th>Available:</th>
+					<td>
+            					<span id="available_balance">0.00</span> TRTL /
+            					$<span id="usd_balance">0.00</span> USD
+          				</td>
+				</tr>
+				<tr>
+					<th style="width: 35%;">Locked /<wbr> Unconfirmed:</th>
+					<td><span id="locked_amount">0.00</span> TRTL</td>
+				</tr>
+				<tr>
+					<th>Minimum donation to show on screen: (in USD)</th>
+					<td>
+						<input id="minalert_amount" type="number" placeholder="0.00" onchange="minAlert();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+					</td>
+				</tr>
+        			<tr>
 					<th>Withdraw:</th>
 					<td>
-						<textarea id="withdraw" style="overflow: hidden; margin-top: 0px; margin-bottom: 0px; height: 20px; width: 1000px;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
+						<textarea id="withdraw" style="overflow: hidden;margin-top: 5.5px;margin-bottom: 0px;height: 36px;width: 51%;font-size: 11px;" placeholder="Your personal TRTL address"></textarea>
             					<button class="address p-l-10" onclick="withdraw(document.getElementById('withdraw').value)" title="Withdraw TRTL">Withdraw!</button>
 					</td>
 				</tr>
@@ -89,7 +100,7 @@
 						<th id="time" class="th-td">Time</th>
 						<th class="th-td">Name</th>
 						<th class="th-td">Message</th>
-						<th class="th-td">Amount</th>
+						<th class="th-td sorttable_numeric">Amount</th>
 						<th class="th-td">USD</th>
 					</tr>
 				</thead>
@@ -102,5 +113,14 @@
 <!-- Transactions End -->
 
 <script src="js/dashBoard.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113862764-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-113862764-3');
+</script>
 </body>
 </html>

@@ -37,15 +37,14 @@ function tokensOrBust() {
       xhr.onload = function() {
         profile = JSON.parse(this.responseText);
         if (this.status == 400) {
-          window.location = "https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://twitchturtle.com/dashboard/&response_type=code&scope=donations.create";
+          window.location = "https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://trtl.tv/dashboard/&response_type=code&scope=donations.create";
         }
         document.cookie = "token="+profile.token;
         window.history.pushState({}, document.title, "/dashboard" + "");
         submit();
-        // document.getElementById("address").innerHTML = profile.address;
       }
     } else {
-      window.location.replace("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://twitchturtle.com/dashboard/&response_type=code&scope=donations.create")
+      window.location.replace("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://trtl.tv/dashboard/&response_type=code&scope=donations.create")
     };
   }
 }
@@ -53,24 +52,25 @@ function tokensOrBust() {
 var profile;
 function submit() {
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
-    $("#rows tr").detach();
-    $.each(transactionsJSON(), function(index, value){
+    var transactionTable = '';
+    $.each(transactionsJSON(data.data.quotes.USD.price), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
-          $('#rows').append(
-            '<tr>' +
+          transactionTable += '<tr>' +
               '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
               '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
               '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
-              '<td>'+(value2.amount/100).toFixed(2)+'</td>' +
+              '<td sorttable_customkey="' + value2.amount + '">'+(value2.amount/100).toFixed(2)+'</td>' +
               '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
-            '</tr>'
-          );
+            '</tr>';
         });
       };
     });
-    console.log(document.getElementsByTagName("time")[0]);
-    sorttable.innerSortFunction.apply(document.getElementsByTagName("time")[0], []);
+    if(transactionTable === '') {
+      return
+    }
+    $('#rows').html(transactionTable);
+    sorttable.innerSortFunction.apply(document.getElementById("time"), []);
   });
 
 }
@@ -94,7 +94,6 @@ function copyToClipboard(element) {
 function convertExtraToName(extra) {
   try {
     extra = "7b226e" + extra.split("7b226e").pop();
-    console.log(extra);
     var x = JSON.parse(hex2a(extra));
     return x.name
   }
@@ -102,6 +101,7 @@ function convertExtraToName(extra) {
     return "Anonymous";
   }
 }
+
 function convertExtraToMessage(extra) {
   try {
     extra = "7b226e" + extra.split("7b226e").pop();
@@ -113,7 +113,9 @@ function convertExtraToMessage(extra) {
   }
 }
 
-function transactionsJSON() {
+
+lastTransactions = []
+function transactionsJSON(usdPrice) {
     var resp ;
     var xmlHttp ;
 
@@ -139,17 +141,24 @@ function transactionsJSON() {
       tokensOrBust();
     }
     json = JSON.parse(resp);
-    document.getElementById("name").innerHTML = json.name;
     document.getElementById("address").innerHTML = json.address;
+    document.getElementById("userLink").innerHTML = "https://trtl.tv/" + json.name;
+    document.getElementById("userLink").href = "https://trtl.tv/" + json.name;
 
     document.getElementById("blockCount").innerHTML = json.status.blockCount;
     document.getElementById("knownBlockCount").innerHTML = json.status.knownBlockCount;
 
     document.getElementById("available_balance").innerHTML = (json.balance.availableBalance/100).toFixed(2);
     document.getElementById("locked_amount").innerHTML = (json.balance.lockedAmount/100).toFixed(2);
+    document.getElementById("usd_balance").innerHTML = ((json.balance.availableBalance/100)*usdPrice).toFixed(2);
+
+    document.getElementById("minalert_amount").placeholder = json.minAlert;
+
+    if(lastTransactions.length === json.transactions.length) {return}
+    lastTransactions = json.transactions
 
     return json.transactions;
-    }
+}
 
 function withdraw(address) {
 
@@ -211,11 +220,33 @@ function withdraw(address) {
         )
       }
       json = JSON.parse(resp);
-      return json;
+      swal("Success!", "Your withdraw has gone through! You should see it in your wallet soon.", "success",);
     } else {
       swal("Withdraw Cancelled!", "", "error",);
     }
   });
 }
 
-$(document).ready(function() {tokensOrBust();setInterval(submit(), 10000)});
+function minAlert() {
+    var token = getCookie("token");
+    if (token == "" || token == null) {
+        return
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.twitchturtle.com/minAlert", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
+    xhr.send(JSON.stringify({
+    	minAlertNum: document.getElementById('minalert_amount').value
+    }));
+    xhr.onload = function() {
+    	console.log(this.responseText)
+    }
+}
+
+function logout() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    location = "https://twitchturtle.com";
+}
+
+$(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000);console.log('%cTwitchTurtle Dev Console', 'background: green; color: white; font-size: 55px');console.log('%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.twitchturtle.com', 'background: red; color: white; font-size: 35px');});
