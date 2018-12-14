@@ -240,7 +240,7 @@ function minAlert() {
     	minAlertNum: document.getElementById('minalert_amount').value
     }));
     xhr.onload = function() {
-    	console.log(this.responseText)
+    	document.getElementById("minalert_amount").placeholder = JSON.parse(this.responseText).minAlertNum;
     }
 }
 
