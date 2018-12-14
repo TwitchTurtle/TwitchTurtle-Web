@@ -31,7 +31,7 @@ function tokensOrBust() {
   if(getCookie("token") == "" || getCookie("token") == null ) {
     if(code) {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://api.twitchturtle.com/code", true);
+      xhr.open("POST", "https://api.trtl.tv", true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
           code: code
@@ -131,7 +131,7 @@ function transactionsJSON(usdPrice) {
 
     if(xmlHttp != null)
     {
-        xmlHttp.open( "GET", "https://api.twitchturtle.com/userStats", false );
+        xmlHttp.open( "GET", "https://api.trtl.tv/userStats", false );
         xmlHttp.setRequestHeader('Content-Type', 'application/json');
         xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
         xmlHttp.send( null );
@@ -202,7 +202,7 @@ function withdraw(address) {
     if (willDelete) {
       if(xmlHttp != null)
       {
-          xmlHttp.open( "GET", "https://api.twitchturtle.com/withdraw/" + address.replace(/\s/g,''), false );
+          xmlHttp.open( "GET", "https://api.trtl.tv/withdraw/" + address.replace(/\s/g,''), false );
           xmlHttp.setRequestHeader('Content-Type', 'application/json');
           xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
           xmlHttp.send( null );
@@ -235,7 +235,7 @@ function minAlert() {
         return
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://api.twitchturtle.com/minAlert", true);
+    xhr.open("POST", "https://api.trtl.tv/minAlert", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
     xhr.send(JSON.stringify({
@@ -248,7 +248,7 @@ function minAlert() {
 
 function logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    location = "https://twitchturtle.com";
+    location = "https://trtl.tv";
 }
 
 $(document).ready(function() {tokensOrBust();submit();setInterval(submit, 10000);console.log('%cTwitchTurtle Dev Console', 'background: green; color: white; font-size: 55px');console.log('%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.twitchturtle.com', 'background: red; color: white; font-size: 35px');});
