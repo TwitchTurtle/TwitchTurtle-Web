@@ -13,7 +13,9 @@ function getCookie(cname) {
     }
     return "";
 }
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -142,8 +144,8 @@ function transactionsJSON(usdPrice) {
     }
     json = JSON.parse(resp);
     document.getElementById("address").innerHTML = json.address;
-    document.getElementById("userLink").innerHTML = "https://trtl.tv/" + json.name;
-    document.getElementById("userLink").href = "https://trtl.tv/" + json.name;
+    document.getElementById("userLink").innerHTML = "https://trtl.tv/" + capitalizeFirstLetter(json.name);
+    document.getElementById("userLink").href = "https://trtl.tv/" + capitalizeFirstLetter(json.name);
 
     document.getElementById("blockCount").innerHTML = json.status.blockCount;
     document.getElementById("knownBlockCount").innerHTML = json.status.knownBlockCount;
