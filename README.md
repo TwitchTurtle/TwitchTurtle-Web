@@ -1,6 +1,6 @@
 # Welcome to TwitchTurtle
 This wiki is a collection of guides for newcomers to TwitchTurtle.
-If this is your first time hearing about TwitchTurtle, we recommend starting with the TwitchTurtle website at https://twitchturtle.com  
+If this is your first time hearing about TwitchTurtle, we recommend starting with the TwitchTurtle website at https://trtl.tv or https://twitchturtle.com  
 
 ## What is TwitchTurtle?
 TwitchTurtle is a streamlabs-integration system, which lets you accept tips while streaming with TurtleCoin; a fast, easy and private cryptocurrency.   
