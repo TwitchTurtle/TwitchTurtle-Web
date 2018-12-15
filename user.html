@@ -7,7 +7,6 @@
 	<a id="userLink" style="color: #fff;position: absolute;top: 150px;right: 30px;">twitch.tv/TwitchTurtleOfficial</a>
 </div>
 <div class="container">
-<form>
   <img id="userLogo" style="height: 128px;display: block;margin: auto;border-radius: 5%;" />
   <br>
   <h2 id="userName" style="font-family: 'Open Sans Condensed', sans-serif;font-weight: 900;font-size: 2em;"></h2>
@@ -18,7 +17,6 @@
   <br>
   <button class="button" onclick="submit()" title="Donate!">Donate!</button>
   <div id="qr_address" class="qr_address"></div>
-</form>
 </div>
 
 <footer class="footer-distributed">
@@ -93,18 +91,17 @@ function submit() {
       extra: ascii_to_hexa('{"name":"' + name + '","message":"' + message + '"}')
     }));
     xhr.onload = function() {
-	var intAddr = createIntegratedAddress(address, JSON.parse(this.responseText).paymentID);
- 	return createAddress(intAddr);
+ 	return createAddress(createIntegratedAddress(address, JSON.parse(this.responseText).paymentID));
     }
 }
 function createAddress(address) {
 	swal({
             confirmButtonColor: '#4caf50',
             allowOutsideClick: false,
-            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + intAddr + '</h3></div><p>Make sure to send at least ' + minAlert + ' USD to make your donation show up on stream</p>'
+            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + (minAlert / minAlertTRTL).toFixed(2) + ' TRTL (' + minAlert + ' USD) to make your donation show up on stream</p>'
         });
 	var qrcode = new QRCode(document.getElementById("qrcode"),{
-		text: intAddr,
+		text: address,
 		width: 400,
 		height: 400,
 		colorDark: "#000000",
@@ -131,13 +128,22 @@ window.onload = function(){
   		'This streamer either does not exist, or has not yet registered for TwitchTurtle',
   		'error'
 	    )
+	    return
         }
     };
     xmlHttp.send( null );
     var resp = JSON.parse(xmlHttp.responseText);
     address = resp.address;
     minAlert = resp.minDonation;
-
+	
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD", true);
+    xhr.send();
+    xhr.onload = function() {
+	minAlertTRTL = JSON.parse(this.response).data.quotes.USD.price;
+    }
+	
+	
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://api.twitch.tv/kraken/channels/" + username + "?client_id=rgkaxvgg18t24iqtys37zqa6s9r9sb", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
