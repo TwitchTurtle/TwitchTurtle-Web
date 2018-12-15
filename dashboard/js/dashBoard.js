@@ -26,6 +26,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 var code = getParameterByName('code');
+window.history.pushState({}, document.title, "/dashboard" + "");
 
 function tokensOrBust() {
   if(getCookie("token") == "" || getCookie("token") == null ) {
