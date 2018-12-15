@@ -141,6 +141,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 	line-height: 35px;
 	margin-left: 3px;
 }
+i.fab{
+	line-height: 35px;
+}
 @media (max-width: 600px) {
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-right{
