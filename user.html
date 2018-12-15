@@ -138,7 +138,6 @@ window.onload = function(){
 	
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
     xhr.onload = function() {
 	minAlertTRTL = JSON.parse(this.response).data.quotes.USD.price;
