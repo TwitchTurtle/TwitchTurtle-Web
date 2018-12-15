@@ -98,7 +98,7 @@ function createAddress(address) {
 	swal({
             confirmButtonColor: '#4caf50',
             allowOutsideClick: false,
-            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + minAlertTRTL + ' TRTL (" + minAlert + " USD)  to make your donation show up on stream</p>'
+            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + (minAlert / minAlertTRTL) + ' TRTL (' + minAlert + ' USD) to make your donation show up on stream</p>'
         });
 	var qrcode = new QRCode(document.getElementById("qrcode"),{
 		text: address,
