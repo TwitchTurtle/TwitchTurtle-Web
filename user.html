@@ -98,7 +98,7 @@ function createAddress(address) {
 	swal({
             confirmButtonColor: '#4caf50',
             allowOutsideClick: false,
-            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + minAlert + ' USD to make your donation show up on stream</p>'
+            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + minAlertTRTL + ' TRTL (" + minAlert + " USD)  to make your donation show up on stream</p>'
         });
 	var qrcode = new QRCode(document.getElementById("qrcode"),{
 		text: address,
@@ -135,7 +135,16 @@ window.onload = function(){
     var resp = JSON.parse(xmlHttp.responseText);
     address = resp.address;
     minAlert = resp.minDonation;
-
+	
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+    xhr.onload = function() {
+	minAlertTRTL = JSON.parse(this.response).data.quotes.USD.price;
+    }
+	
+	
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://api.twitch.tv/kraken/channels/" + username + "?client_id=rgkaxvgg18t24iqtys37zqa6s9r9sb", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
