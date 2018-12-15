@@ -31,7 +31,7 @@ function tokensOrBust() {
   if(getCookie("token") == "" || getCookie("token") == null ) {
     if(code) {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://api.trtl.tv", true);
+      xhr.open("POST", "https://api.trtl.tv/code", true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({
           code: code
