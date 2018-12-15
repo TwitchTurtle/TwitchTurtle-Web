@@ -38,7 +38,7 @@
 			·
 			<a href="https://docs.turtlecoin.lol/getting-started/">Getting Started</a>
 			·
-			<a href="https://twitchturtle.com/tos.html">Terms of Service</a>
+			<a href="https://trtl.tv/tos">Terms of Service</a>
 		</p>
 		<p>Twitch Turtle &copy; 2018</p>
 	</div>
@@ -85,7 +85,7 @@ function submit() {
     }
 	
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://api.twitchturtle.com/tipper", true);
+    xhr.open("POST", "https://api.trtl.tv/tipper", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
       extra: ascii_to_hexa('{"name":"' + name + '","message":"' + message + '"}')
@@ -119,7 +119,7 @@ window.onload = function(){
 
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://api.twitchturtle.com/address/" + username, false );
+    xmlHttp.open( "GET", "https://api.trtl.tv/address/" + username, false );
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.onreadystatechange = () => {
         if (xmlHttp.status === 400) {
