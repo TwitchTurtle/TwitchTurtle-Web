@@ -233,12 +233,16 @@ function minAlert() {
     if (token == "" || token == null) {
         return
     }
+    var minAlertNum = document.getElementById('minalert_amount').value
+    if (!minAlertNum) {
+        var minAlertNum = "0"
+    }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.trtl.tv/minAlert", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
     xhr.send(JSON.stringify({
-    	minAlertNum: document.getElementById('minalert_amount').value
+    	minAlertNum: minAlertNum
     }));
     xhr.onload = function() {
     	document.getElementById("minalert_amount").placeholder = JSON.parse(this.responseText).minAlertNum;
