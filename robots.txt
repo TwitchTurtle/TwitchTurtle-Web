@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://twitchturtle.com/sitemap.xml
+Sitemap: https://trtl.tv/sitemap.xml
