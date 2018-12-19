@@ -80,7 +80,7 @@ function submit() {
     var name = document.getElementById("name").value;
     var message = document.getElementById("message").value;
 
-    if (name.length < 2) { // Streamlabs does not accept names < 2 chars, just remove name
+    if (name.length < 3) { // Streamlabs does not accept names < 2 chars, just remove name
 	return createAddress(address);
     }
 	
