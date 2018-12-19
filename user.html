@@ -95,10 +95,14 @@ function submit() {
     }
 }
 function createAddress(address) {
+	var minAlertText
+	if (minAlert > 0) {
+		var minAlertText = '<p>Make sure to send at least ' + (minAlert / minAlertTRTL).toFixed(2) + ' TRTL (' + minAlert + ' USD) to make your donation show up on stream</p>';
+	}
 	swal({
             confirmButtonColor: '#4caf50',
             allowOutsideClick: false,
-            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div><p>Make sure to send at least ' + (minAlert / minAlertTRTL).toFixed(2) + ' TRTL (' + minAlert + ' USD) to make your donation show up on stream</p>'
+            html: '<div id="qrcode"></div><div id="donationAddress"><h3>' + address + '</h3></div>' + minAlertText
         });
 	var qrcode = new QRCode(document.getElementById("qrcode"),{
 		text: address,
