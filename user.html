@@ -95,7 +95,7 @@ function submit() {
     }
 }
 function createAddress(address) {
-	var minAlertText
+	var minAlertText = '';
 	if (minAlert > 0) {
 		var minAlertText = '<p>Make sure to send at least ' + (minAlert / minAlertTRTL).toFixed(2) + ' TRTL (' + minAlert + ' USD) to make your donation show up on stream</p>';
 	}
