@@ -73,3 +73,79 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/watt3r
 
 ==================================================================
+
+==================================================================
+https://keybase.io/watt3r
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://twitchturtle.com
+  * I am watt3r (https://keybase.io/watt3r) on keybase.
+  * I have a public key with fingerprint 4A4F 0E57 A7E7 9FB4 281D  06DA DABA E81C C24A 18F2
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01209c78e0b9f1a250efc4b517883b86e80990eef7b47b04751a07f60923e256e63f0a",
+      "fingerprint": "4a4f0e57a7e79fb4281d06dadabae81cc24a18f2",
+      "host": "keybase.io",
+      "key_id": "dabae81cc24a18f2",
+      "kid": "0101050228a9647e54f688e3e2ad11a78d16f35447f246d29702119e1781ff154c3f0a",
+      "uid": "e23013da8ec3b4498c9a40089439a519",
+      "username": "watt3r"
+    },
+    "service": {
+      "hostname": "twitchturtle.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1545584451,
+  "expire_in": 157680000,
+  "prev": "c820be3fb247bc8daeabb90d27d4d903dfb08fbf8bd6540a21411b3c5399a1d2",
+  "seqno": 41,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.80
+Comment: https://keybase.io/crypto
+
+yMN5AnicbVJhTBRHFAaKWFELhYBCbYEt2KrX6+zu7O3uEWhQA9ZSgR/SmiLn7O4s
+bA/u6N1ygIBYLIWGFMRIACkIiii1UNoiFgwRCVYpSEksjSVSQaNUTShSEUlI6B7B
+f535MZn3vu9733sz/etfcvF0Hev+e1Pf7o2zroNXTmS6JAVd3pFLCFYphzDmEma8
+fOA0CdtVk1mRCCMBSArwIsthIPAyiSgGYFmEAkOyHEcLnAFzgOcBxjIrQFYAkGVI
+BFjZAHiKxhRjwAZaBojQEbJiScG2DJtiUTVZiKAMMMMiFrO8LECKIyVgkJCEBIQ5
+UhQpiEhOpjRiqtXuZGjmBGTHesWqxbSLadne/+Bf+NY2AyiKQ7wBspiBsoHjsOYJ
+SSSJWE4iDTLNQMjKFDRIFM8CiiR5rPVFyjLJQHHFd+ayHKZoQNIS4rBICxDynMgj
+CADHQ5pHDMk7gXZss6B0rKGzkKrSNiJfR2gxhyJi51idfazk1SxFFVPVTJuahvWi
+NV1jZ9isqlW0pmnZVFXNsBudbDUnY1kOC6YVIZOgWCRtkhrDgW12xWohjKSGFFXF
+qaz5ZhgOQobUETg7Q7Fhk+JEMKyBA9py1sEOTVLkKCBgWhYo7dVETkIYCQIPJIqV
+oMQDWpIFwMmCzAmSgYEAUSQkSYEWGZrnESk552zHn1mshBFqpVSUomnalRQL0prC
+RH7flSR3F1dPF49Vbs4v5uK5xvvFx0u94LW4viqzWZcbcizkREFI4cippQFzXbSR
+TypRmcGOGh9jwDOxjQvpLg/6hH3SuW7Jv93uV1Z08E7Jky1zhxva9fnPHmZ1z9wo
+1tc2xs5T66qmuqdqE0cLq4djitfYtnnt7Zkrrh/o8nxFPj8n1sck+779TdN2MT+v
+cuEHR/Ge5ovWC/fHeqtvTjYJByIrRnWlpZFHOpt++/Tl+bvZlXGV/wT3RyVOdgav
+TRg/pLh1hfgm/N7w1ulbQUPb+nrCjoT7U5sO1fE3Zieeu+W4h+8MmmoJ88jtcdSC
+soLGwfQzZ78KGD68udx7eEPhrsl909Pexq6C7tDFQbf4bH3gL0UR8Oa9c5HzH9yu
+Mw/4yr2hG4Oz2/Le3VCRueD/XmxixOrRqw0PEqK/9/p8X/xH8NvY5i/2DqVd87r6
+5YeZsY/cK96oHykPXkLhc7uSQ/cLq9bmRZ92BF888Gv/sYQGn1Fgbj2fumXq9R3k
+q+eSW1pGjg5GZSg/lRv9pLC4rXfe/3j22riLfs/JsXceF0aEX2/0tj96GHXrz+ml
+9pAfW9sow37q66R/zX8M+N1euBt4/3hNmcd22mfn7jNx+ZX1JnPid5eeBoYlyD9b
+JxyXWs+eejzT23M0frz0TamoIkb3PKe8pLpX6pB8a8ShrXMLmw++1txZFVlyz2Q7
+OdHxoOeynU709V5YDDgelXV95q+nq/8DKKvC6g==
+=9r+S
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/watt3r
+
+==================================================================
