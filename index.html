@@ -116,23 +116,26 @@
 <script src=assets/js/util.js></script>
 <script src=assets/js/main.js></script>
 <script>
-	var a=document.createElement('a');
-	var linkText=document.createTextNode("Terms of Service");
-	a.appendChild(linkText);a.title="Terms of Service";
-	a.href="tos.html";
-	var par=document.createElement("p");
-	par.innerHTML="You will be redirected to StreamLabs to continue registration. By clicking Agree and Continue, I hereby agree and consent to the ";
-	par.appendChild(a);
-	function register(){
-	  swal({
-	    title:'Register',
-	    content:par,
-	    buttons:["Disagree","Agree and continue"],
-	  }).then((agree)=>{
-	    if(agree){
-	      location.assign("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://trtl.tv/dashboard/&response_type=code&scope=donations.create");
-	    }else{
-	      
-	    }
-	  })}
+  var a = document.createElement('a');
+  var linkText = document.createTextNode("Terms of Service");
+  a.appendChild(linkText);
+  a.title = "Terms of Service";
+  a.href = "tos.html";
+  var par = document.createElement("p");
+  par.innerHTML = "You will be redirected to StreamLabs to continue registration. By clicking Agree and Continue, I hereby agree and consent to the ";
+  par.appendChild(a);
+
+  function register() {
+    swal({
+      title: 'Register',
+      content: par,
+      buttons: ["Disagree", "Agree and continue"],
+    }).then((agree) => {
+      if (agree) {
+        location.assign("https://www.streamlabs.com/api/v1.0/authorize?client_id=e4lKhBGqlUblZ8JhIdW1jCvRqrQ6k4OjRSUcazTE&redirect_uri=https://trtl.tv/dashboard/&response_type=code&scope=donations.create");
+      } else {
+
+      }
+    })
+  }
 </script>
