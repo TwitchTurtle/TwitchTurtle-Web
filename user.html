@@ -62,6 +62,18 @@ function createIntegratedAddress(address, paymentid) {
   }
 }
 	
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+	
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -88,7 +100,7 @@ function submit() {
     xhr.open("POST", "https://api.trtl.tv/tipper", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
-      extra: ascii_to_hexa('{"name":"' + name + '","message":"' + message + '"}')
+      extra: ascii_to_hexa('{"name":"' + escapeHtml(name) + '","message":"' + escapeHtml(message) + '"}')
     }));
     xhr.onload = function() {
  	return createAddress(createIntegratedAddress(address, JSON.parse(this.responseText).paymentID));
