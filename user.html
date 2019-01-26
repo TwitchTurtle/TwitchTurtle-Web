@@ -151,11 +151,13 @@
         xmlHttp.setRequestHeader('Content-Type', 'application/json');
         xmlHttp.onreadystatechange = () => {
           if (xmlHttp.status === 400) {
-            Swal(
-              '404 - Streamer Not Found',
-              'This streamer either does not exist, or has not yet registered for TwitchTurtle',
-              'error'
-            )
+            swal({
+              title: '404 - Streamer Not Found',
+              text: 'This streamer either does not exist, or has not yet registered for TwitchTurtle',
+              showCancelButton: false,
+              showConfirmButton: false,
+              type: 'error',
+            })
             return
           }
         };
