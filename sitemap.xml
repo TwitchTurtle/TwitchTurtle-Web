@@ -6,17 +6,17 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://twitchturtle.com/</loc>
+  <loc>https://trtl.tv/</loc>
   <lastmod>2018-11-16T18:47:28+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://twitchturtle.com/dashboard/</loc>
+  <loc>https://trtl.tv/dashboard/</loc>
   <lastmod>2018-11-16T18:47:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://twitchturtle.com/tos.html</loc>
+  <loc>https://trtl.tv/tos.html</loc>
   <lastmod>2018-11-16T18:47:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
