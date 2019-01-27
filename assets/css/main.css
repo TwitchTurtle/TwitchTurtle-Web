@@ -708,7 +708,7 @@ button,
 #navPanel a:not(.close):first-child{border:none;}
 #navPanel .close{text-decoration:none;-moz-transition:color 0.2s ease-in-out;-webkit-transition:color 0.2s ease-in-out;-ms-transition:color 0.2s ease-in-out;transition:color 0.2s ease-in-out;-webkit-tap-highlight-color:transparent;border:0;color:#daefe3;cursor:pointer;display:block;height:4em;padding-right:1.25em;position:absolute;right:0;text-align:right;top:0;vertical-align:middle;width:5em;}
 #navPanel .close:hover{color:inherit;}
-#banner{padding:4.5em 0 9em 0;background-image:url(../../images/banner.jpg);background-size:cover;background-position:bottom;background-attachment:fixed;background-repeat:no-repeat;text-align:center;position:relative;}
+#banner{padding:4.5em 0 9em 0;background-image:url(/assets/img/banner.jpg);background-size:cover;background-position:bottom;background-attachment:fixed;background-repeat:no-repeat;text-align:center;position:relative;}
 #banner:before{content:'';background:rgba(75, 75, 93, 0.85);position:absolute;width:100%;height:100%;top:0;left:0;}
 #banner .inner{border-top:2px solid rgba(255, 255, 255, 0.2);position:relative;padding-top:8em;}
 #banner h1{font-size:3.5em;font-weight:400;color:#fff;line-height:1em;margin:0 0 1em 0;padding:0;}
