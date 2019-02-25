@@ -213,14 +213,25 @@ function withdraw(address) {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
         tokensOrBust();
       }
-      if(xmlHttp.status == 400) {
-        console.log('Error');
+      if(xmlHttp.status == 500) {
+        console.log('Withdraw Error: Server');
         swal(
-          'Error!',
-          JSON.parse(resp).error,
+          'Server Error!',
+          "There was an issue in the server. Please try again later",
           'error'
         )
+        return
       }
+      if(xmlHttp.status != 200) {
+        console.log('Withdraw Error: Unknown');
+        swal(
+          'Error ' + xmlHttp.status + '!',
+          "There was an error. Please try again later",
+          'error'
+        )
+        return
+      }
+        
       json = JSON.parse(resp);
       swal("Success!", "Your withdraw has gone through! You should see it in your wallet soon.", "success",);
     } else {
