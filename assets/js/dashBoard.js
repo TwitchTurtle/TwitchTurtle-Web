@@ -1,3 +1,5 @@
+// Returns a cookie from given parameter
+// Used to retrieve client token from cookie
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -13,9 +15,13 @@ function getCookie(cname) {
     }
     return "";
 }
+// Capitalizes first letter of string
+// Used to format usernames
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+// GET parameters
+// Used for streamlabs auth on first time use with the code
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -28,6 +34,7 @@ function getParameterByName(name, url) {
 var code = getParameterByName('code');
 window.history.pushState({}, document.title, "/dashboard" + "");
 
+// Get tokens from streamlabs or fail
 function tokensOrBust() {
   if(getCookie("token") == "" || getCookie("token") == null ) {
     if(code) {
@@ -51,7 +58,8 @@ function tokensOrBust() {
     };
   }
 }
-
+// Formats data from transactionsJSON() into a nice little table
+// Used every 10 seconds
 var profile;
 function submit() {
   $.getJSON('https://api.coinmarketcap.com/v2/ticker/2958/?convert=USD', function(data) {
@@ -77,7 +85,8 @@ function submit() {
   });
 
 }
-
+// Returns sting version of hex
+// Used to convert transaction extra to json
 function hex2a(hexx) {
     var hex = hexx.toString();//force conversion
     var str = '';
@@ -86,6 +95,8 @@ function hex2a(hexx) {
     return str;
 }
 
+// Copy item to clipboard
+// Used to copy donation link on button
 function copyToClipboard(element) {
  var $temp = $("<input>");
  $("body").append($temp);
@@ -94,6 +105,8 @@ function copyToClipboard(element) {
  $temp.remove();
 }
 
+// Verbose
+// Used to convert the transaction extra to a name for transaction history
 function convertExtraToName(extra) {
   try {
     extra = "7b226e" + extra.split("7b226e").pop();
@@ -105,6 +118,8 @@ function convertExtraToName(extra) {
   }
 }
 
+// Verbose
+// Used to convert the transaction extra to a message for transaction history
 function convertExtraToMessage(extra) {
   try {
     extra = "7b226e" + extra.split("7b226e").pop();
@@ -116,7 +131,7 @@ function convertExtraToMessage(extra) {
   }
 }
 
-
+// Gets latest data from api.trtl.tv and return it to submit() for parsing
 lastTransactions = []
 function transactionsJSON(usdPrice) {
     var resp ;
@@ -162,6 +177,7 @@ function transactionsJSON(usdPrice) {
     return json.transactions;
 }
 
+// Withdraws TRTL from trtl.tv to personal wallet
 function withdraw(address) {
 
   address = address.replace(/\s/g,'');
@@ -240,6 +256,7 @@ function withdraw(address) {
   });
 }
 
+// Minumum USD needed sent to get an alert
 function minAlert() {
     var token = getCookie("token");
     if (token == "" || token == null) {
@@ -261,6 +278,7 @@ function minAlert() {
     }
 }
 
+// Log out user
 function logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     location = "https://trtl.tv";
