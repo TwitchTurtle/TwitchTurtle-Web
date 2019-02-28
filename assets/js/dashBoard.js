@@ -142,7 +142,7 @@ function transactionsJSON(usdPrice) {
 
     var token = getCookie("token");
     if (token == "" || token == null) {
-        return
+        tokensOrBust();
     }
 
     if(xmlHttp != null)
@@ -260,7 +260,7 @@ function withdraw(address) {
 function minAlert() {
     var token = getCookie("token");
     if (token == "" || token == null) {
-        return
+        tokensOrBust();
     }
     var minAlertNum = document.getElementById('minalert_amount').value
     if (!minAlertNum) {
