@@ -149,7 +149,7 @@ function transactionsJSON(usdPrice) {
     {
         xmlHttp.open( "GET", "https://api.trtl.tv/userStats", false );
         xmlHttp.setRequestHeader('Content-Type', 'application/json');
-        xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
+        xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + nonce(10)));
         xmlHttp.send( null );
         resp = xmlHttp.responseText;
     }
@@ -220,7 +220,7 @@ function withdraw(address) {
       {
           xmlHttp.open( "GET", "https://api.trtl.tv/withdraw/" + address.replace(/\s/g,''), false );
           xmlHttp.setRequestHeader('Content-Type', 'application/json');
-          xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
+          xmlHttp.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + nonce(10)));
           xmlHttp.send( null );
           resp = xmlHttp.responseText;
       }
@@ -269,7 +269,7 @@ function minAlert() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.trtl.tv/minAlert", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + 'nonce'));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(token + ":" + nonce(10)));
     xhr.send(JSON.stringify({
     	minAlertNum: minAlertNum
     }));
@@ -277,6 +277,13 @@ function minAlert() {
     	document.getElementById("minalert_amount").placeholder = JSON.parse(this.responseText).minAlertNum;
     }
 }
+
+// Nonce generator for extra security
+// Used with sending a nonce to api.trtl.tv for all calls
+function nonce(length) {
+    return [...Array(length)].map(i=>(~~(Math.random()*36)).toString(36)).join('')
+}
+
 
 // Log out user
 function logout() {
