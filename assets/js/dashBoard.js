@@ -67,13 +67,15 @@ function submit() {
     $.each(transactionsJSON(data.data.quotes.USD.price), function(index, value){
       if (value.transactions !== undefined && value.transactions.length != 0) {
         $.each(value.transactions, function(index2, value2){
-          transactionTable += '<tr>' +
-              '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
-              '<td>'+convertExtraToName(value2.extra)+'</a></td>' +
-              '<td>'+convertExtraToMessage(value2.extra)+'</td>' +
-              '<td sorttable_customkey="' + value2.amount + '">'+(value2.amount/100).toFixed(2)+'</td>' +
-              '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
-            '</tr>';
+          $.getJSON('https://api.trtl.tv/extra/'+value2.extra, function(extra) {
+            transactionTable += '<tr>' +
+                '<td sorttable_customkey="' + value2.timestamp + '">'+moment.unix((value2.timestamp)).fromNow()+'</td>' +
+                '<td>'+convertExtraToName(extra)+'</a></td>' +
+                '<td>'+convertExtraToMessage(extra)+'</td>' +
+                '<td sorttable_customkey="' + value2.amount + '">'+(value2.amount/100).toFixed(2)+'</td>' +
+                '<td>'+(data.data.quotes.USD.price * (value2.amount/100)).toFixed(6)+'</td>' +
+              '</tr>';
+          });
         });
       };
     });
@@ -247,7 +249,7 @@ function withdraw(address) {
         )
         return
       }
-        
+
       json = JSON.parse(resp);
       swal("Success!", "Your withdraw has gone through! You should see it in your wallet soon.", "success",);
     } else {
@@ -300,7 +302,7 @@ $(document).ready(function() {
     'background: green; color: white; font-size: 55px'
   );
   console.log(
-    '%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.trtl.tv', 
+    '%cDo not paste anything into this console unless you know EXACTLY what you are doing. There is a high chance of you getting hacked if you are not careful. If you do know what you are doing, come help the project out at https://chat.trtl.tv',
     'background: red; color: white; font-size: 35px'
   );
 });
